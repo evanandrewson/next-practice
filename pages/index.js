@@ -1,8 +1,16 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import CharacterItem from '../components/CharacterItem'
 
 export default function CharacterList({ characters }) {
+  const characterElements = characters.map(character => {
+    return (
+      <li key={character.id}>
+        <CharacterItem {...character} />
+      </li>
+    )
+  })
   return (
-    <div></div>
+    <ul>
+      {characterElements}
+    </ul>
   )
 }
