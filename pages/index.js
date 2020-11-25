@@ -1,4 +1,5 @@
-import CharacterItem from '../components/CharacterItem'
+import CharacterItem from '../components/CharacterItem';
+import { getCharacters } from '../lib/rickAndMorty';
 
 export default function CharacterList({ characters }) {
   const characterElements = characters.map(character => {
@@ -7,10 +8,20 @@ export default function CharacterList({ characters }) {
         <CharacterItem {...character} />
       </li>
     )
-  })
+  });
   return (
     <ul>
       {characterElements}
     </ul>
-  )
-}
+  );
+};
+
+export async function getStaticProps() {
+  const characters = await getCharacters();
+
+  return {
+    props: {
+      characters
+    }
+  }
+};
